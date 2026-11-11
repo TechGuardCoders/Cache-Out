@@ -35,3 +35,13 @@ python -m pytest tests/ -q   # 17 tests
 ```
 
 Tests caught two real bugs during the build: evicted entries surviving in the fuzzy store, and eviction double-counting.
+
+## Docker
+
+Multi-stage, multi-arch (amd64 + arm64), non-root runtime image.
+
+```bash
+docker build --target test .          # run the test suite in-container
+docker build -t cache-out .              # runtime image (smoke import)
+docker run --rm cache-out
+```
